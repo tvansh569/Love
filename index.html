@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Muskan ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #fff0f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .container {
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 22px;
+    max-width: 90%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
+
+  h1 {
+    color: #e75480;
+    font-size: 28px;
+  }
+
+  #name {
+    font-weight: bold;
+    border-right: 2px solid #e75480;
+    padding-right: 6px;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%,100% { border-color: transparent; }
+    50% { border-color: #e75480; }
+  }
+
+  p {
+    color: #444;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  button {
+    margin: 12px;
+    padding: 12px 26px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .no {
+    background: #d1d1d1;
+    position: relative;
+  }
+
+  button:hover {
+    transform: scale(1.08);
+  }
+
+  #secret, #secret2, #secret3 {
+    display: none;
+    margin-top: 18px;
+    color: #e75480;
+    font-size: 18px;
+  }
+
+  #secret3 {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 5s linear forwards;
+    color: #ff4d6d;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+  }
+
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: fall 3s linear forwards;
+  }
+
+  @keyframes fall {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(110vh); }
+  }
+
+  /* Fireworks */
+  .firework {
+    position: absolute;
+    font-size: 28px;
+    animation: explode 1.5s ease-out forwards;
+  }
+
+  @keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(2); opacity: 0; }
+  }
+
+  /* Music button */
+  #musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 5;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1><span id="name"></span>, I Have Something to Say ❤️</h1>
+
+  <p>
+    From the moment you entered my life, everything felt warmer and calmer.  
+    Your smile stays with me longer than you realize,  
+    and your presence feels like a place my heart belongs to.
+    <br><br>
+    Muskan, this isn’t just a question…  
+    it’s me offering you my heart, honestly and completely 💗
+  </p>
+
+  <div id="buttons">
+    <button class="yes" onclick="sayYes()">Yes 💕</button>
+    <button class="no" id="noBtn" onmouseover="playfulNo()">No 🙈</button>
+  </div>
+
+  <div id="secret">
+    You just made me the happiest person alive 💍❤️  
+    <br><br>
+    I promise to choose you every day —  
+    in laughter, in silence, in everything 🌸
+  </div>
+
+  <div id="secret2">
+    This heart may not be perfect…  
+    but it’s endlessly yours, Muskan 💖✨
+  </div>
+
+  <div id="secret3">
+    And one last thing…  
+    <br>
+    If love ever had a name for me,  
+    it would sound exactly like yours 💗
+  </div>
+</div>
+
+<!-- Music -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<script>
+  /* Name typing animation */
+  const nameText = "Muskan";
+  const nameElement = document.getElementById("name");
+  let index = 0;
+
+  function typeName() {
+    if (index < nameText.length) {
+      nameElement.innerHTML += nameText.charAt(index);
+      index++;
+      setTimeout(typeName, 300);
+    }
+  }
+  typeName();
+
+  /* Music */
+  const music = document.getElementById("music");
+  let playing = false;
+
+  function toggleMusic() {
+    playing ? music.pause() : music.play();
+    playing = !playing;
+  }
+
+  /* YES action */
+  function sayYes() {
+    document.getElementById("secret").style.display = "block";
+    document.getElementById("secret2").style.display = "block";
+    document.getElementById("buttons").style.display = "none";
+
+    music.play();
+    playing = true;
+
+    setInterval(createHeart, 300);
+    setInterval(confetti, 200);
+    setInterval(firework, 800);
+
+    // Hidden message after 3 seconds
+    setTimeout(() => {
+      document.getElementById("secret3").style.display = "block";
+    }, 3000);
+  }
+
+  /* Naughty NO button */
+  const noTexts = ["Nope 😜", "Nice try 😉", "Almost 😏", "Hehe nope 😆", "Not today 😈"];
+
+  function playfulNo() {
+    const btn = document.getElementById("noBtn");
+    btn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 70 + "vw";
+    btn.style.top = Math.random() * 70 + "vh";
+    btn.style.transform = "rotate(" + (Math.random()*20 - 10) + "deg)";
+  }
+
+  /* Effects */
+  function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }
+
+  function confetti() {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+
+  function firework() {
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.innerText = "✨";
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = Math.random() * 50 + "vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1500);
+  }
+</script>
+
+</body>
+</html>
